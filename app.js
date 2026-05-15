@@ -24,7 +24,8 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/natureworld";
+const MONGO_URL = "mongodb://127.0.0.1:27017/natureworld";
+// const dbUrl = process.env.ATLASDB_URL;
 
 main()
 .then(()=>{
@@ -35,7 +36,7 @@ main()
 });
 
 async function main(){
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(MONGO_URL);
 }
 
 app.set("view engine","ejs");
@@ -106,7 +107,6 @@ app.use((err,req,res,next)=>{
     // res.status(statuscode).send(message);
 });
 
-const PORT = process.env.PORT || 8080;
-app.listen(PORT,()=>{
-    console.log(`server is listening to port ${PORT}`);
+app.listen(8080,()=>{
+    console.log("server is listening to port 8080");
 });
